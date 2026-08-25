@@ -1,0 +1,23 @@
+[package]
+name = "md-viewer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tao = "0.30"
+wry = "0.47"
+comrak = "0.35"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+notify = "8.0"
+
+# 仅在 Linux 平台引入 gtk 依赖
+[target.'cfg(target_os = "linux")'.dependencies]
+gtk = "0.18"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
